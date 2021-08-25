@@ -1,0 +1,21 @@
+rule all:
+    input:
+        "output/fastqc/A_fastqc.html",
+        "output/fastp/A_trimmed.fastq",
+        "output/trimmomatic/A_trimmed.fastq",
+        "output/bwa/A_aligned.sam",
+        "output/samtools/A_sorted.bam",
+        "output/samtools/A_sorted.bam.bai",
+        "output/qualimap/",
+        "output/gatk/A_vcf.gz",
+        "output/bcftools/A_consensus.fasta"
+
+include: "rules/fastqc-0.11.9/main.smk"
+include: "rules/fastp-0.23.2/main.smk"
+include: "rules/trimmomatic-0.39/se.smk"
+include: "rules/bwa-0.7.17/mem.smk"
+include: "rules/samtools-1.15.1/sort.smk"
+include: "rules/samtools-1.15.1/index.smk"
+include: "rules/qualimap-2.2.2/bamqc.smk"
+include: "rules/gatk-4.2.6.1/haplotype.smk"
+include: "rules/bcftools-1.15.1/consensus.smk"
