@@ -1,0 +1,30 @@
+==> 2022-04-19 13:38:26 <==
+# cmd: /home/nsm/mambaforge/bin/mamba create --quiet --file /home/nsm/Desktop/All_Development/recombinant_finder_sars_cov2/workflow/conda/29236716002250c6eb8213c1c6cad77c.yaml --prefix /home/nsm/Desktop/All_Development/recombinant_finder_sars_cov2/workflow/conda/29236716002250c6eb8213c1c6cad77c
+# conda version: 4.12.0
++bioconda/noarch::gatk4-4.2.6.1-hdfd78af_0
++conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge
++conda-forge/linux-64::_openmp_mutex-4.5-1_gnu
++conda-forge/linux-64::bzip2-1.0.8-h7f98852_4
++conda-forge/linux-64::ca-certificates-2021.10.8-ha878542_0
++conda-forge/linux-64::ld_impl_linux-64-2.36.1-hea4e1c9_2
++conda-forge/linux-64::libffi-3.4.2-h7f98852_5
++conda-forge/linux-64::libgcc-ng-11.2.0-h1d223b6_15
++conda-forge/linux-64::libgomp-11.2.0-h1d223b6_15
++conda-forge/linux-64::libnsl-2.0.0-h7f98852_0
++conda-forge/linux-64::libuuid-2.32.1-h7f98852_1000
++conda-forge/linux-64::libzlib-1.2.11-h166bdaf_1014
++conda-forge/linux-64::ncurses-6.3-h27087fc_1
++conda-forge/linux-64::openjdk-8.0.312-h7f98852_0
++conda-forge/linux-64::openssl-3.0.2-h166bdaf_1
++conda-forge/linux-64::python-3.10.4-h2660328_0_cpython
++conda-forge/linux-64::python_abi-3.10-2_cp310
++conda-forge/linux-64::readline-8.1-h46c0cb4_0
++conda-forge/linux-64::setuptools-62.1.0-py310hff52083_0
++conda-forge/linux-64::sqlite-3.38.2-h4ff8645_0
++conda-forge/linux-64::tk-8.6.12-h27826a3_0
++conda-forge/linux-64::xz-5.2.5-h516909a_1
++conda-forge/linux-64::zlib-1.2.11-h166bdaf_1014
++conda-forge/noarch::pip-22.0.4-pyhd8ed1ab_0
++conda-forge/noarch::tzdata-2022a-h191b570_0
++conda-forge/noarch::wheel-0.37.1-pyhd8ed1ab_0
+# update specs: ['_libgcc_mutex==0.1=conda_forge', '_openmp_mutex==4.5=1_gnu', 'bzip2==1.0.8=h7f98852_4', 'ca-certificates==2021.10.8=ha878542_0', 'gatk4==4.2.6.1=hdfd78af_0', 'ld_impl_linux-64==2.36.1=hea4e1c9_2', 'libffi==3.4.2=h7f98852_5', 'libgcc-ng==11.2.0=h1d223b6_15', 'libgomp==11.2.0=h1d223b6_15', 'libnsl==2.0.0=h7f98852_0', 'libuuid==2.32.1=h7f98852_1000', 'libzlib==1.2.11=h166bdaf_1014', 'ncurses==6.3=h27087fc_1', 'openjdk==8.0.312=h7f98852_0', 'openssl==3.0.2=h166bdaf_1', 'pip==22.0.4=pyhd8ed1ab_0', 'python==3.10.4=h2660328_0_cpython', 'python_abi==3.10=2_cp310', 'readline==8.1=h46c0cb4_0', 'setuptools==62.1.0=py310hff52083_0', 'sqlite==3.38.2=h4ff8645_0', 'tk==8.6.12=h27826a3_0', 'tzdata==2022a=h191b570_0', 'wheel==0.37.1=pyhd8ed1ab_0', 'xz==5.2.5=h516909a_1', 'zlib==1.2.11=h166bdaf_1014']
