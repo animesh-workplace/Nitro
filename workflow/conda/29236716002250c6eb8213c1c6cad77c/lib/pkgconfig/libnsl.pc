@@ -1,0 +1,12 @@
+prefix=/home/nsm/Desktop/All_Development/recombinant_finder_sars_cov2/workflow/conda/29236716002250c6eb8213c1c6cad77c
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libnsl
+Description: Library containing NIS functions using TI-RPC (IPv6 enabled)
+Requires: libtirpc >= 1.0.1
+Version: 2.0.0
+Libs: -L${exec_prefix}/lib -lnsl
+Cflags: -I${prefix}/include
+
