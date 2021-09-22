@@ -1,0 +1,12 @@
+prefix=/home/nsm/Desktop/All_Development/recombinant_finder_sars_cov2/workflow/conda/29236716002250c6eb8213c1c6cad77c
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+enginesdir=${libdir}/engines-3
+
+Name: OpenSSL-libcrypto
+Description: OpenSSL cryptography library
+Version: 3.0.2
+Libs: -L${libdir} -lcrypto
+Libs.private: -ldl -pthread 
+Cflags: -I${includedir}
