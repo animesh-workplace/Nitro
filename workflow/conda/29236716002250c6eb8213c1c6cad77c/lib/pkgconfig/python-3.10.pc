@@ -1,0 +1,13 @@
+# See: man pkg-config
+prefix=/home/nsm/Desktop/All_Development/recombinant_finder_sars_cov2/workflow/conda/29236716002250c6eb8213c1c6cad77c
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Python
+Description: Build a C extension for Python
+Requires:
+Version: 3.10
+Libs.private: -lcrypt -lpthread -ldl  -lutil -lrt -lm
+Libs:
+Cflags: -I${includedir}/python3.10
