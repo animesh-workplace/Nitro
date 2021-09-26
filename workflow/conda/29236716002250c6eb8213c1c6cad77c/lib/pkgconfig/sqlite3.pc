@@ -1,0 +1,13 @@
+# Package Information for pkg-config
+
+prefix=/home/nsm/Desktop/All_Development/recombinant_finder_sars_cov2/workflow/conda/29236716002250c6eb8213c1c6cad77c
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: SQLite
+Description: SQL database engine
+Version: 3.38.2
+Libs: -L${libdir} -lsqlite3
+Libs.private: -lz -lm -ldl -lpthread 
+Cflags: -I${includedir}
