@@ -1,0 +1,12 @@
+prefix=/home/nsm/Desktop/All_Development/recombinant_finder_sars_cov2/workflow/conda/29236716002250c6eb8213c1c6cad77c
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Readline
+Description: Gnu Readline library for command line editing
+URL: http://tiswww.cwru.edu/php/chet/readline/rltop.html
+Version: 8.1
+Requires.private: tinfo
+Libs: -L${libdir} -lreadline
+Cflags: -I${includedir}
