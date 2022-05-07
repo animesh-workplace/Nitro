@@ -3,13 +3,13 @@
 git diff --name-only > updated_file.list
 # git ls-files --exclude-standard -o > updated_file.list
 
-cat date.list | while read date; do
-    echo "$date";
-    echo "windowsuser" | sudo -S timedatectl set-time "$date";
+# cat date.list | while read date; do
+    # echo "$date";
+    # echo "windowsuser" | sudo -S timedatectl set-time "$date";
     head -n 50 updated_file.list | while read line; do
         git add "$line";
         git commit -m "updated file - $line"
     done
-    git diff --name-only > updated_file.list
+    # git diff --name-only > updated_file.list
     # git ls-files --exclude-standard -o > updated_file.list
-done
+# done
