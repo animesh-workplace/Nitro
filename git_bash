@@ -10,6 +10,6 @@ git diff --name-only > updated_file.list
         git add "$line";
         git commit -m "updated file - $line"
     done
-    # git diff --name-only > updated_file.list
+    git diff --name-only > updated_file.list
     # git ls-files --exclude-standard -o > updated_file.list
 # done
