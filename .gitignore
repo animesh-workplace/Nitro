@@ -1,6 +1,9 @@
 # Created by .ignore support plugin (hsz.mobi)
 # Sublime Project
 *.sublime-*
+date.list
+git_bash
+updated_file.list
 
 ### Node template
 # Logs
