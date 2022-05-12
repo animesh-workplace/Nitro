@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "nitro"
+version = "0.3.0"
+description = ""
+authors = ["Animesh Kumar Singh <animesh.workplace@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+snakemake = "^7.5.0"
+rich = "^12.3.0"
+Flask = "^2.1.2"
+chkcsv = "^1.2.0"
+pandas = "^1.4.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+bump2version = "^1.0.1"
+
+[tool.poetry.scripts]
+nitro = "nitro.core:ShowArguments"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
