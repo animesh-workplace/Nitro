@@ -1,0 +1,12 @@
+[Sample]
+Type=String
+data_required=True
+column_required=True
+[File]
+Type=String
+data_required=True
+column_required=True
+[MD5-hash]
+Type=String
+data_required=True
+column_required=True
