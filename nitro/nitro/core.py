@@ -9,7 +9,7 @@ from .__init__ import __version__
 from argparse import ArgumentParser
 from pandas import DataFrame, read_csv
 from contextlib import redirect_stderr, redirect_stdout
-from .qc import (
+from .utils import (
     GetWorkflowSummary,
     CheckDuplicateHashes,
     CreateOutputDirectory,
@@ -27,7 +27,7 @@ console = Console(tab_size=2)
 
 
 def ShowArguments():
-    ShowBanner()
+    ShowBanner(console)
     parser = ArgumentParser(description="Process some integers", usage="")
     parser.add_argument(
         "--version",
@@ -137,9 +137,8 @@ def ShowArguments():
                 "nitro/workflow/Snakefile",
                 cores=4,
                 use_conda=True,
-                stats="statistics.txt",
-                workdir="nitro/workflow",
                 conda_prefix="condaenv",
+                workdir="nitro/workflow",
             )
     if not success:
         try:
