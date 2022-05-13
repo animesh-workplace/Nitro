@@ -141,8 +141,8 @@ def GetWorkflowSummary(console):
             snakemake(
                 "nitro/workflow/Snakefile",
                 cores=4,
-                dryrun=True,
                 quiet=True,
+                dryrun=True,
                 nocolor=True,
                 use_conda=True,
                 printd3dag=True,
@@ -150,7 +150,22 @@ def GetWorkflowSummary(console):
                 workdir="nitro/workflow",
                 # conda_base_path="" [donot delete will be required in the future]
             )
-
+    """
+        Getting the summary stats in a file in temporary directory
+        using the d3dag of snakemake that emits a JSON
+    """
+    with open(rulegraph, "w") as f:
+        with redirect_stdout(f):
+            snakemake(
+                "nitro/workflow/Snakefile",
+                cores=4,
+                quiet=True,
+                use_conda=True,
+                printrulegraph=True,
+                conda_prefix="condaenv",
+                workdir="nitro/workflow",
+                # conda_base_path="" [donot delete will be required in the future]
+            )
     # Reading back the JSON file and saving it in a dict format
     with open(summary) as f:
         temp = json.loads(f.read())
