@@ -11,6 +11,8 @@ from importlib.util import find_spec
 from contextlib import redirect_stdout
 from tempfile import TemporaryDirectory
 
+# from pydot import graph_from_dot_file
+
 
 def CheckSampleSheetStructure(samplesheet, console, status):
     # Check the structure of samplesheet is as required
