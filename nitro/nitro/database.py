@@ -1,18 +1,14 @@
-import os
 import sqlite3
 from rich import box
 from time import sleep
+from pathlib import Path
 from sqlite3 import Error
 from rich.live import Live
+from rich.text import Text
 from rich.table import Table
 from datetime import datetime
-from rich.console import Console
-
-
-from rich.text import Text
-from rich.live import Live
-from rich.table import Table
 from rich.spinner import Spinner
+from rich.console import Console
 from rich.progress import (
     Progress,
     BarColumn,
@@ -26,7 +22,7 @@ def CreateConnection(db_loc):
     db_file = "db.sqlite3"
     connection = None
     try:
-        connection = sqlite3.connect(os.path.join(db_loc, db_file))
+        connection = sqlite3.connect(Path(db_loc, db_file))
     except Error as e:
         print(e)
     finally:
