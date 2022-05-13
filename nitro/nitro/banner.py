@@ -1,8 +1,4 @@
-from rich.console import Console
-
-
-def ShowBanner():
-    console = Console()
+def ShowBanner(console):
     console.print(
         """
 ███╗░░██╗░██╗░████████╗░██████╗░░░█████╗░
