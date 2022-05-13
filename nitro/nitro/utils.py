@@ -145,44 +145,70 @@ def GetWorkflowSummary(console):
                 dryrun=True,
                 nocolor=True,
                 use_conda=True,
-                printd3dag=True,
                 conda_prefix="condaenv",
                 workdir="nitro/workflow",
-                # conda_base_path="" [donot delete will be required in the future]
             )
+
+    with open(summary, "r") as f:
+        sample = f.read()
+
+    all_input_lines = sample.splitlines()
+    all_input_lines = all_input_lines[1:]
+
+    # Converting the table into dictionary
+    row_dict = []
+    for is_blank, input_lines_iter in groupby(
+        all_input_lines, key=lambda s: not bool(s.strip())
+    ):
+        input_lines = list(input_lines_iter)
+        if is_blank:
+            continue
+
+        # First two lines are field names and separator dashes
+        names, dashes = input_lines[:2]
+
+        # Using regex to get start/end of each '---' divider, and making slices
+        spans = (match.span() for match in re.finditer("-+", dashes))
+        slices = [slice(sp[0], sp[1] + 1) for sp in spans]
+        # Slice and get the row name
+        names = [names[sl].strip() for sl in slices]
+
+        for line in input_lines[2 : len(input_lines) - 1]:
+            temp = dict(zip(names, (line[sl].strip() for sl in slices)))
+            temp["job"] = rule_schema[temp["job"].split("_v")[0].replace("_main", "")]
+            if temp["job"] != "All":
+                row_dict.append(temp)
+
+    # Counting the total jobs
+    total = sum([int(row["count"]) for row in row_dict])
+
+    # Creating a unified dictionary for helping in printing
+    job_count = {
+        row["job"]: {"total": int(row["count"]), "running": 0, "completed": 0}
+        for row in row_dict
+    }
+
+    return job_count, total
+
     """
         Getting the summary stats in a file in temporary directory
         using the d3dag of snakemake that emits a JSON
     """
-    with open(rulegraph, "w") as f:
-        with redirect_stdout(f):
-            snakemake(
-                "nitro/workflow/Snakefile",
-                cores=4,
-                quiet=True,
-                use_conda=True,
-                printrulegraph=True,
-                conda_prefix="condaenv",
-                workdir="nitro/workflow",
-                # conda_base_path="" [donot delete will be required in the future]
-            )
+    # with open(rulegraph, "w") as f:
+    #     with redirect_stdout(f):
+    #         snakemake(
+    #             "nitro/workflow/Snakefile",
+    #             cores=4,
+    #             quiet=True,
+    #             use_conda=True,
+    #             printrulegraph=True,
+    #             conda_prefix="condaenv",
+    #             workdir="nitro/workflow",
+    #             # conda_base_path="" [donot delete will be required in the future]
+    #         )
     # Reading back the JSON file and saving it in a dict format
-    with open(summary) as f:
-        temp = json.loads(f.read())
-    # Rename rule schema
-    rule_schema = {
-        "all": "All",
-        "fastp": "FastP",
-        "fastqc": "FastQC",
-        "bwa_mem": "BWA MEM",
-        "samtools_sort": "Samtools Sort",
-        "trimmomatic_se": "Trimmomatic SE",
-        "qualimap_bamqc": "Qualimap BamQC",
-        "samtools_merge": "Samtools Merge",
-        "samtools_index": "Samtools Index",
-        "gatk_haplotype": "GATK HaplotypeCaller",
-        "bcftools_consensus": "BCFTools Consensus",
-    }
+    # with open(summary) as f:
+    #     temp = json.loads(f.read())
 
     # graphs = graph_from_dot_file(rulegraph)
     # graph = graphs[0]
