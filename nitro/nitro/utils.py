@@ -130,6 +130,7 @@ def VerifyIntegrityandFileExistence(samplesheet, console, status, outdir):
 def GetWorkflowSummary(console):
     tempdir = TemporaryDirectory()
     summary = Path(tempdir.name, "summary.json")
+    rulegraph = Path(tempdir.name, "rulegraph.dot")
 
     """
         Getting the summary stats in a file in temporary directory
