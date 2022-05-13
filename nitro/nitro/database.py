@@ -87,7 +87,10 @@ def UpdateWorkflow(db_loc, job, sample, status, time, workflow):
     UpdateDatabase(db_loc, job, sample, status, time)
     progress = ListDatabase(db_loc)
     total_completed = 0
+    order = []
     for tool, value in progress.items():
+        if not tool in order:
+            order.append(tool)
         running = len([item for item, state in value.items() if (state == "Started")])
         completed = len(
             [item for item, state in value.items() if (state == "Finished")]
@@ -95,7 +98,17 @@ def UpdateWorkflow(db_loc, job, sample, status, time, workflow):
         workflow[tool]["running"] = running
         workflow[tool]["completed"] = completed
         total_completed = total_completed + completed
-    return workflow, total_completed
+
+    # Ordering the workflow
+    new_workflow = {}
+    # Order from the database
+    for item in order:
+        new_workflow[item] = workflow[item]
+    # Put rest of the items in any order
+    for tool, value in workflow.items():
+        if not tool in list(new_workflow.keys()):
+            new_workflow[tool] = value
+    return new_workflow, total_completed
 
 
 def InitLiveDisplay(console, workflow, total):
