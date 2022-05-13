@@ -130,11 +130,26 @@ def VerifyIntegrityandFileExistence(samplesheet, console, status, outdir):
 def GetWorkflowSummary(console):
     tempdir = TemporaryDirectory()
     summary = Path(tempdir.name, "summary.json")
-    rulegraph = Path(tempdir.name, "rulegraph.dot")
+    # rulegraph = Path(tempdir.name, "rulegraph.dot")
+
+    # Rename rule schema
+    rule_schema = {
+        "all": "All",
+        "fastp": "FastP",
+        "fastqc": "FastQC",
+        "bwa_mem": "BWA MEM",
+        "samtools_sort": "Samtools Sort",
+        "trimmomatic_se": "Trimmomatic SE",
+        "qualimap_bamqc": "Qualimap BamQC",
+        "samtools_merge": "Samtools Merge",
+        "samtools_index": "Samtools Index",
+        "gatk_haplotype": "GATK HaplotypeCaller",
+        "bcftools_consensus": "BCFTools Consensus",
+    }
 
     """
         Getting the summary stats in a file in temporary directory
-        using the d3dag of snakemake that emits a JSON
+        using the dry run of snakemake that emits a table
     """
     with open(summary, "w") as f:
         with redirect_stdout(f):
