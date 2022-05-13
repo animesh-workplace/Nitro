@@ -184,14 +184,25 @@ def GetWorkflowSummary(console):
         "bcftools_consensus": "BCFTools Consensus",
     }
 
-    ordering = list(
-        set(
-            [
-                rule_schema[i["value"]["rule"].split("_v")[0].replace("_main", "")]
-                for i in temp["nodes"]
-            ]
-        )
-    )
+    # graphs = graph_from_dot_file(rulegraph)
+    # graph = graphs[0]
+    # graph.get_node_list()
+    # for node in graph.get_node_list():
+    #     label = node.get_label()
+    #     if label:
+    #         console.log(
+    #             rule_schema[label.strip('"').split("_v")[0].replace("_main", "")]
+    #         )
+
+    # ordering = list(
+    #     set(
+    #         [
+    #             rule_schema[i["value"]["rule"].split("_v")[0].replace("_main", "")]
+    #             for i in temp["nodes"]
+    #         ]
+    #     )
+    # )
+
     job_count = dict(
         Counter(
             [
