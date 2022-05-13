@@ -11,6 +11,7 @@ rich = "^12.3.0"
 Flask = "^2.1.2"
 chkcsv = "^1.2.0"
 pandas = "^1.4.2"
+pydot = "^1.4.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
