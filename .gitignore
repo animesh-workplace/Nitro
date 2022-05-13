@@ -1,10 +1,18 @@
 # Project specific #
-condaenv/
-data/
-output/
-stderr.txt
 .snakemake
 *sublime-*
+
+# Might be removed later
+condaenv/
+stderr.txt
+output/
+data/
+summary.txt
+my_output/
+DemoInput/
+demo/
+samplesheet.csv
+statistics.txt
 
 
 ### Django ###
