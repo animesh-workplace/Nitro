@@ -132,7 +132,6 @@ def VerifyIntegrityandFileExistence(samplesheet, console, status, outdir):
 def GetWorkflowSummary(console):
     tempdir = TemporaryDirectory()
     summary = Path(tempdir.name, "summary.json")
-    # rulegraph = Path(tempdir.name, "rulegraph.dot")
 
     # Rename rule schema
     rule_schema = {
