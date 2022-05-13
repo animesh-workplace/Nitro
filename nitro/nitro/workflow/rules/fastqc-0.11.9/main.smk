@@ -5,7 +5,6 @@ rule fastqc_main_v0_11_9:
         zip = "output/{sample}/fastqc_report/{sample}_{file_id}_fastqc.zip",
         html = "output/{sample}/fastqc_report/{sample}_{file_id}_fastqc.html",
     params:
-    version: "0.11.9"
     threads: 1
     log:
         "output/{sample}/log/{sample}_{file_id}_fastqc.log"
