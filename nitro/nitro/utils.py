@@ -246,21 +246,11 @@ def GetWorkflowSummary(console):
     #     )
     # )
 
-    job_count = dict(
-        Counter(
-            [
-                rule_schema[i["value"]["rule"].split("_v")[0].replace("_main", "")]
-                for i in temp["nodes"]
-            ]
-        )
-    )
-    # Counting the total jobs
-    total = sum([value for key, value in job_count.items()])
-    # Creating a unified dictionary for helping in printing
-    job_count = {
-        key: {"total": value, "running": 0, "completed": 0}
-        for key, value in job_count.items()
-        if (not key == "All")
-    }
-
-    return job_count, total
+    # job_count = dict(
+    #     Counter(
+    #         [
+    #             rule_schema[i["value"]["rule"].split("_v")[0].replace("_main", "")]
+    #             for i in temp["nodes"]
+    #         ]
+    #     )
+    # )
