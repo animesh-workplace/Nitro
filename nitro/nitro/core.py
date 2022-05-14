@@ -130,6 +130,7 @@ def ShowArguments():
     tempdir = TemporaryDirectory()
     config_loc = f"{tempdir.name}/config.yaml"
     yaml.dump(config, open(config_loc, "w"))
+    yaml.dump(config, open("demo.config.yaml", "w"))
     status.stop()
 
     # Getting the workflow status
