@@ -170,6 +170,7 @@ def GetWorkflowSummary(console, config_loc):
                 nocolor=True,
                 use_conda=True,
                 conda_prefix="condaenv",
+                configfiles=[config_loc],
                 workdir="nitro/workflow",
             )
 
