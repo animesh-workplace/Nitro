@@ -1,13 +1,22 @@
+import numpy
 import requests
+import itertools
 from rich.console import Console
 from tempfile import TemporaryDirectory
 
 
 tempdir = TemporaryDirectory()
-console = Console(tab_size=2)
-# only_sample = []
-# for sample, files in config['SampleConfig'].items():
-#     only_sample.append(sample)
+console = Console(tab_size=2, stderr=True)
+only_file = []
+only_sample = []
+repeat_sample = []
+for sample, files in config['SampleConfig'].items():
+    only_sample.append(sample)
+    repeat_sample.append(numpy.repeat(sample, len(files)).tolist())
+    only_file.append(files)
+
+only_file = list(itertools.chain(*only_file))
+repeat_sample =list(itertools.chain(*repeat_sample))
 
 onstart:
     config['db_loc'] = tempdir.name
