@@ -71,21 +71,21 @@ rule all:
         # expand("output/{sample}/{sample}_merged.bam.bai",
         #     sample=['Sample1', 'Sample2']
         # ),
-        # expand("output/{sample}/qualimap_report/",
-        #     sample=['Sample1', 'Sample2']
-        # ),
+        expand(config["BaseDir"] / config["OutputDir"] / "output/{sample}/qualimap_report/",
+            sample=only_sample
+        ),
         # expand("output/{sample}/{sample}.vcf.gz", sample=['Sample1', 'Sample2']),
-        # expand("output/{sample}/{sample}.consensus.fasta",
-        #     sample=['Sample1', 'Sample2']
-        # ),
+        expand(config["BaseDir"] / config["OutputDir"] / "output/{sample}/{sample}.consensus.fasta",
+            sample=only_sample
+        ),
 
 include: "rules/fastqc-0.11.9/main.smk"
-# include: "rules/fastp-0.23.2/main.smk"
-# include: "rules/trimmomatic-0.39/se.smk"
-# include: "rules/bwa-0.7.17/mem.smk"
-# include: "rules/samtools-1.15.1/sort.smk"
-# include: "rules/samtools-1.15.1/merge.smk"
-# include: "rules/samtools-1.15.1/index.smk"
-# include: "rules/qualimap-2.2.2/bamqc.smk"
-# include: "rules/gatk-4.2.6.1/haplotypecaller.smk"
-# include: "rules/bcftools-1.15.1/consensus.smk"
+include: "rules/fastp-0.23.2/main.smk"
+include: "rules/trimmomatic-0.39/se.smk"
+include: "rules/bwa-0.7.17/mem.smk"
+include: "rules/samtools-1.15.1/sort.smk"
+include: "rules/samtools-1.15.1/merge.smk"
+include: "rules/samtools-1.15.1/index.smk"
+include: "rules/qualimap-2.2.2/bamqc.smk"
+include: "rules/gatk-4.2.6.1/haplotypecaller.smk"
+include: "rules/bcftools-1.15.1/consensus.smk"
