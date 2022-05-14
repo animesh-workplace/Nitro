@@ -178,6 +178,15 @@ def GetWorkflowSummary(console, config_loc):
         sample = f.read()
 
     all_input_lines = sample.splitlines()
+    """
+        Guard clause if the snakemake dry run is showing no output,
+        meaning that the output files are already present
+    """
+    if len(all_input_lines) == 0:
+        console.print(
+            "\t[italic][yellow]Nothing to be done (all requested files are present and up to date)"
+        )
+        exit()
     all_input_lines = all_input_lines[1:]
 
     # Converting the table into dictionary
