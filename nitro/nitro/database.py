@@ -164,7 +164,7 @@ def UpdateLiveDisplay(
                 + f"[bold green]({Status['completed']}/{Status['total']} Completed)[/bold green]"
             )
             grid.add_row(Spinner("dots", style="blue", text=text))
-    progress.update(pipeline, total=(total - 1), completed=total_completed)
+    progress.update(pipeline, total=total, completed=total_completed)
     grid.add_row()
     grid.add_row(progress)
     grid.add_row()
