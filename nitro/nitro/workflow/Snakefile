@@ -5,14 +5,16 @@ from tempfile import TemporaryDirectory
 
 tempdir = TemporaryDirectory()
 console = Console(tab_size=2)
+# only_sample = []
+# for sample, files in config['SampleConfig'].items():
+#     only_sample.append(sample)
 
 onstart:
     config['db_loc'] = tempdir.name
+    console.log(config)
     requests.post('http://localhost:5000/create', data={"db_loc": tempdir.name})
-    # console.rule('[ Pipeline started running ]')
 
 onsuccess:
-    # console.rule('[ Pipeline completed ]')
     console.bell()
     requests.get('http://localhost:5000/exit')
 
@@ -23,7 +25,7 @@ onerror:
 
 rule all:
     input:
-        expand("output/{sample}/fastqc_report/{sample}_{file_id}_fastqc.html", zip,
+        expand(config["BaseDir"] / "output/{sample}/fastqc_report/{sample}_{file_id}_fastqc.html", zip,
             sample=['Sample1', 'Sample2', 'Sample2'],
             file_id=[
                 '1ef9b908f472643b30e3db6ba1018246',
@@ -31,30 +33,30 @@ rule all:
                 '9da58faf111da7918a8198845beaeafb',
             ]
         ),
-        expand("output/{sample}/{sample}_{file_id}_fastp_trimmed.fastq.gz", zip,
-            sample=['Sample1', 'Sample2', 'Sample2'],
-            file_id=[
-                '1ef9b908f472643b30e3db6ba1018246',
-                'd83f0ac38126c894c8fe89cebd6f4b4b',
-                '9da58faf111da7918a8198845beaeafb',
-            ]
-        ),
-        expand("output/{sample}/{sample}_{file_id}_trimmomatic_trimmed.fastq.gz", zip,
-            sample=['Sample1', 'Sample2', 'Sample2'],
-            file_id=[
-                '1ef9b908f472643b30e3db6ba1018246',
-                'd83f0ac38126c894c8fe89cebd6f4b4b',
-                '9da58faf111da7918a8198845beaeafb',
-            ]
-        ),
-        expand("output/{sample}/{sample}_{file_id}_trimmed_aligned.sam", zip,
-            sample=['Sample1', 'Sample2', 'Sample2'],
-            file_id=[
-                '1ef9b908f472643b30e3db6ba1018246',
-                'd83f0ac38126c894c8fe89cebd6f4b4b',
-                '9da58faf111da7918a8198845beaeafb',
-            ]
-        ),
+        # expand("output/{sample}/{sample}_{file_id}_fastp_trimmed.fastq.gz", zip,
+        #     sample=['Sample1', 'Sample2', 'Sample2'],
+        #     file_id=[
+        #         '1ef9b908f472643b30e3db6ba1018246',
+        #         'd83f0ac38126c894c8fe89cebd6f4b4b',
+        #         '9da58faf111da7918a8198845beaeafb',
+        #     ]
+        # ),
+        # expand("output/{sample}/{sample}_{file_id}_trimmomatic_trimmed.fastq.gz", zip,
+        #     sample=['Sample1', 'Sample2', 'Sample2'],
+        #     file_id=[
+        #         '1ef9b908f472643b30e3db6ba1018246',
+        #         'd83f0ac38126c894c8fe89cebd6f4b4b',
+        #         '9da58faf111da7918a8198845beaeafb',
+        #     ]
+        # ),
+        # expand("output/{sample}/{sample}_{file_id}_trimmed_aligned.sam", zip,
+        #     sample=['Sample1', 'Sample2', 'Sample2'],
+        #     file_id=[
+        #         '1ef9b908f472643b30e3db6ba1018246',
+        #         'd83f0ac38126c894c8fe89cebd6f4b4b',
+        #         '9da58faf111da7918a8198845beaeafb',
+        #     ]
+        # ),
         # expand("output/{sample}/{sample}_{file_id}_trimmed_aligned_sorted.bam", zip,
         #     sample=['Sample1', 'Sample2', 'Sample2'],
         #     file_id=[
@@ -69,21 +71,21 @@ rule all:
         # expand("output/{sample}/{sample}_merged.bam.bai",
         #     sample=['Sample1', 'Sample2']
         # ),
-        expand("output/{sample}/qualimap_report/",
-            sample=['Sample1', 'Sample2']
-        ),
+        # expand("output/{sample}/qualimap_report/",
+        #     sample=['Sample1', 'Sample2']
+        # ),
         # expand("output/{sample}/{sample}.vcf.gz", sample=['Sample1', 'Sample2']),
-        expand("output/{sample}/{sample}.consensus.fasta",
-            sample=['Sample1', 'Sample2']
-        ),
+        # expand("output/{sample}/{sample}.consensus.fasta",
+        #     sample=['Sample1', 'Sample2']
+        # ),
 
 include: "rules/fastqc-0.11.9/main.smk"
-include: "rules/fastp-0.23.2/main.smk"
-include: "rules/trimmomatic-0.39/se.smk"
-include: "rules/bwa-0.7.17/mem.smk"
-include: "rules/samtools-1.15.1/sort.smk"
-include: "rules/samtools-1.15.1/merge.smk"
-include: "rules/samtools-1.15.1/index.smk"
-include: "rules/qualimap-2.2.2/bamqc.smk"
-include: "rules/gatk-4.2.6.1/haplotypecaller.smk"
-include: "rules/bcftools-1.15.1/consensus.smk"
+# include: "rules/fastp-0.23.2/main.smk"
+# include: "rules/trimmomatic-0.39/se.smk"
+# include: "rules/bwa-0.7.17/mem.smk"
+# include: "rules/samtools-1.15.1/sort.smk"
+# include: "rules/samtools-1.15.1/merge.smk"
+# include: "rules/samtools-1.15.1/index.smk"
+# include: "rules/qualimap-2.2.2/bamqc.smk"
+# include: "rules/gatk-4.2.6.1/haplotypecaller.smk"
+# include: "rules/bcftools-1.15.1/consensus.smk"
