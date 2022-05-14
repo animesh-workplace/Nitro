@@ -143,6 +143,7 @@ def ShowArguments():
                 cores=4,
                 use_conda=True,
                 conda_prefix="condaenv",
+                configfiles=[config_loc],
                 workdir="nitro/workflow",
             )
     if not success:
