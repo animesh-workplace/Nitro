@@ -66,12 +66,12 @@ def VerifyIntegrityandFileExistence(samplesheet, console, status, outdir):
     status.update(f"Verifing file integrity (0/{len(samplesheet)})")
     hash_failed = 0
     exist_failed = []
-    config = {"SampleName": [], "FileID": []}
+    config = {}
     for index, row in samplesheet.iterrows():
         InputFile = Path(row.File)
-        config["SampleName"].append(row.Sample)
-        config["FileID"].append(row["MD5-hash"])
-
+        if row.Sample not in config:
+            config[row.Sample] = []
+        config[row.Sample].append(row["MD5-hash"])
         # If InputFile doesnot exist then print and continue checking the next
         if not InputFile.exists():
             exist_failed.append(f"{InputFile} (Not found)")
