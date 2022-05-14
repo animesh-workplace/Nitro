@@ -1,13 +1,8 @@
 JobID: 1e61de22-8cbe-4922-9def-9dd9e8af96e9
-SampleDict:
-    SampleName:
-        - Sample1
-        - Sample2
-        - Sample2
-        - Sample2
-        - Sample2
-    FileID:
+SampleConfig:
+    Sample1:
         - 1ef9b908f472643b30e3db6ba1018246
+    Sample2:
         - d83f0ac38126c894c8fe89cebd6f4b44
         - e7456b8334b829e47c2a12a8c457f2e3
         - 9da58faf111da7918a8198845beaeafa
