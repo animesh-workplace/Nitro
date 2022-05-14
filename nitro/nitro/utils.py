@@ -43,12 +43,11 @@ def CreateOutputDirectory(outdir):
     if yes delete it and then recreate the folder else
     if create it
     """
-    if outdir.exists():
-        shutil.rmtree(outdir)
-    outdir.mkdir(parents=True, exist_ok=True)
-    # This source directory holds renamed fastq file for workflow
-    p = outdir / "source"
-    p.mkdir(parents=True, exist_ok=True)
+    if not outdir.exists():
+        outdir.mkdir(parents=True, exist_ok=True)
+        # This source directory holds renamed fastq file for workflow
+        p = outdir / "source"
+        p.mkdir(parents=True, exist_ok=True)
 
 
 def CheckDuplicateHashes(samplesheet):
