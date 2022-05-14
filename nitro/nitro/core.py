@@ -115,21 +115,25 @@ def ShowArguments():
     # Creating configuration file
     config = {}
     config["JobID"] = uuid4().__str__()
+    config["BaseDir"] = Path.cwd()
     config["OutputDir"] = str(args.outdir)
 
     # Finding duplicate md5-hash
     CheckDuplicateHashes(samplesheet)
 
     # Rename the files and store in the output directory in the folder source
-    config["SampleDict"] = VerifyIntegrityandFileExistence(
+    config["SampleConfig"] = VerifyIntegrityandFileExistence(
         samplesheet, console, status, args.outdir
     )
 
     status.update("Creating configuration")
+    tempdir = TemporaryDirectory()
+    config_loc = f"{tempdir.name}/config.yaml"
+    yaml.dump(config, open(config_loc, "w"))
     status.stop()
 
     # Getting the workflow status
-    workflow, total = GetWorkflowSummary(console)
+    workflow, total = GetWorkflowSummary(console, config_loc)
 
     Thread(target=StartLogger, args=[console, workflow, total]).start()
     with open("stderr.txt", "w") as f:
