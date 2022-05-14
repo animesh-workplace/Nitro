@@ -8,6 +8,7 @@ from rich.console import Console
 from .__init__ import __version__
 from argparse import ArgumentParser
 from pandas import DataFrame, read_csv
+from tempfile import TemporaryDirectory
 from contextlib import redirect_stderr, redirect_stdout
 from .utils import (
     GetWorkflowSummary,
