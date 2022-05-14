@@ -132,7 +132,7 @@ def InitLiveDisplay(console, workflow, total):
     for Tool, Status in workflow.items():
         grid.add_row(Text(f"• {Tool}: Not started", style="dim italic"))
     # Creating the progress bar instance and saving it
-    pipeline = progress.add_task("Running pipeline", total=(total - 1), completed=0)
+    pipeline = progress.add_task("Running pipeline", total=total, completed=0)
     grid.add_row()
     grid.add_row(progress)
     grid.add_row()
