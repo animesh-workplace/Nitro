@@ -96,19 +96,26 @@ def VerifyIntegrityandFileExistence(samplesheet, console, status, outdir):
             Checking whether the file is gunzipped or not,
             if not then gunzip the file
         """
+        FilePath = outdir / "source" / f"{row.Sample}_{calculated_hash}{suffix}"
+
         if InputFile.suffix == ".gz":
-            shell(
-                """
-                    cp {row.File} {outdir:q}/source/{row.Sample}_{calculated_hash}{suffix}
-                """
-            )
+            if not FilePath.exists():
+                shell(
+                    """
+                        cp {row.File} {FilePath:q}
+                    """
+                )
         else:
-            shell(
-                """
-                    cp {row.File} {outdir:q}/source/{row.Sample}_{calculated_hash}{suffix}
-                    gzip {outdir:q}/source/{row.Sample}_{calculated_hash}{suffix}
-                """
+            FilePathgz = (
+                outdir / "source" / f"{row.Sample}_{calculated_hash}{suffix}.gz"
             )
+            if not FilePathgz.exists():
+                shell(
+                    """
+                        cp {row.File} {FilePath:q}
+                        gzip {FilePath:q}
+                    """
+                )
 
     # Guard check for file existence failure
     if exist_failed:
