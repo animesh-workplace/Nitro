@@ -131,11 +131,13 @@ def VerifyIntegrityandFileExistence(samplesheet, console, status, outdir):
         status.stop()
         exit()
 
-    console.print("[green]:heavy_check_mark: Verified the file hash")
+    console.print(
+        f"[green]:heavy_check_mark: Verified the file hash ({len(samplesheet)}/{len(samplesheet)})"
+    )
     return config
 
 
-def GetWorkflowSummary(console):
+def GetWorkflowSummary(console, config_loc):
     tempdir = TemporaryDirectory()
     summary = Path(tempdir.name, "summary.json")
 
