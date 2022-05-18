@@ -212,6 +212,7 @@ def GetWorkflowSummary(console, config_loc):
 
         for line in input_lines[2 : len(input_lines) - 1]:
             temp = dict(zip(names, (line[sl].strip() for sl in slices)))
+            console.print(temp)
             temp["job"] = rule_schema[temp["job"].split("_v")[0].replace("_main", "")]
             if temp["job"] != "All":
                 row_dict.append(temp)
