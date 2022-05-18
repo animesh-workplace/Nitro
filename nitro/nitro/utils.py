@@ -186,7 +186,8 @@ def GetWorkflowSummary(console, config_loc):
     """
     if len(all_input_lines) == 0:
         console.print(
-            "\t[italic][yellow]Nothing to be done (all requested files are present and up to date)"
+            "\t[italic][yellow]Nothing to be done (all requested files are present and up to date)",
+            highlight=False,
         )
         exit()
     all_input_lines = all_input_lines[1:]
