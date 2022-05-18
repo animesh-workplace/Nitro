@@ -46,19 +46,16 @@ rule all:
             config["BaseDir"] / config["OutputDir"] / "output/{sample}/{sample}_{file_id}_trimmomatic_trimmed.fastq.gz",
             zip, sample=repeat_sample, file_id=only_file
         ),
-        expand(config["BaseDir"] / config["OutputDir"] / "output/{sample}/qualimap_report/",
+        expand(
+            config["BaseDir"] / config["OutputDir"] / "output/{sample}/qualimap_report/",
             sample=only_sample
         ),
-        # expand(config["BaseDir"] / config["OutputDir"] / "output/{sample}/{sample}_no_cov.bed",
-        #     sample=only_sample
-        # ),
-        expand(config["BaseDir"] / config["OutputDir"] / "output/{sample}/{sample}.reference.masked.fasta",
+        expand(
+            config["BaseDir"] / config["OutputDir"] / "output/{sample}/{sample}.reference.masked.fasta",
             sample=only_sample
         ),
-        # expand(config["BaseDir"] / config["OutputDir"] / "output/{sample}/{sample}.vcf.gz",
-        #     sample=only_sample
-        # ),
-        expand(config["BaseDir"] / config["OutputDir"] / "output/{sample}/{sample}.consensus.fasta",
+        expand(
+            config["BaseDir"] / config["OutputDir"] / "output/{sample}/{sample}.consensus.fasta",
             sample=only_sample
         ),
 
