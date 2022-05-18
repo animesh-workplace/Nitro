@@ -16,10 +16,11 @@ requests.post(
 )
 shell(
     """
-        bcftools consensus -f {snakemake.params.reference:q} {snakemake.input.vcf:q} -o {snakemake.output[0]:q} {log}
-        sed -i "1s/.*/>{snakemake.wildcards[0]}/" {snakemake.output[0]:q}
+        bcftools consensus -f {snakemake.params.reference:q} {snakemake.input.vcf:q} -m {snakemake.input.mask:q} -o {snakemake.output[0]:q} {log}
     """
 )
+# bcftools maskfasta -fi {snakemake.output[0]:q} -fo Sample1.consensus_masked.fasta -bed {snakemake.input.no_vcf:q} {log}
+# sed -i "1s/.*/>{snakemake.wildcards[0]}/" {snakemake.output[0]:q}
 requests.post(
     "http://localhost:5000/print",
     data={
