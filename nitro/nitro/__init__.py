@@ -364,33 +364,33 @@ df_population.loc[2] = [
 ]
 
 df_population.loc[3] = [
-    "Remarks",
+    "Assessment",
     "Value",
     "MH-INSACOG-CSIR-NEERI947",
     "T",
-    "G",
     "T",
-    "A",
-    "T",
-    "A",
-    "T",
-    "T",
+    "C",
     "G",
     "T",
     "G",
-    "T",
-    "T",
-    "T",
-    "T",
+    "C",
+    "G",
     "A",
+    "C",
     "A",
+    "C",
+    "C",
+    "T",
+    "C",
+    "G",
     "A",
-    "T",
-    "T",
-    "T",
+    "G",
+    "C",
     "C",
     "T",
     "T",
+    "C",
+    "C",
     "G",
     "T",
     "G",
@@ -449,44 +449,44 @@ df_population.loc[3] = [
     "C",
 ]
 
-wb = Workbook()
-ws = wb.active
-ws.title = "BA.1 X BA.2"
+# wb = Workbook()
+# ws = wb.active
+# ws.title = "BA.1 X BA.2"
 
-for r in dataframe_to_rows(df_population, index=False, header=True):
-    ws.append(r)
+# for r in dataframe_to_rows(df_population, index=False, header=True):
+#     ws.append(r)
 
 
-for rows in ws.iter_rows(min_row=1, max_row=5, min_col=4):
-    for cell in rows:
-        if cell.row == 1:
-            cell.alignment = Alignment(
-                textRotation=90, vertical="center", horizontal="center"
-            )
-        else:
-            cell.alignment = Alignment(vertical="center", horizontal="center")
+# for rows in ws.iter_rows(min_row=1, max_row=5, min_col=4):
+#     for cell in rows:
+#         if cell.row == 1:
+#             cell.alignment = Alignment(
+#                 textRotation=90, vertical="center", horizontal="center"
+#             )
+#         else:
+#             cell.alignment = Alignment(vertical="center", horizontal="center")
 
-        if cell.row == 3:
-            cell.fill = PatternFill(
-                start_color="ef4444", end_color="ef4444", fill_type="solid"
-            )
-        elif cell.row == 4:
-            prev_cell = ws.cell(3, cell.col_idx)
-            first_value = prev_cell.value
-            second_value = cell.value
-            if first_value == second_value:
-                prev_cell.fill = PatternFill(
-                    start_color="78716c", end_color="78716c", fill_type="solid"
-                )
-                cell.fill = PatternFill(
-                    start_color="78716c", end_color="78716c", fill_type="solid"
-                )
-            else:
-                cell.fill = PatternFill(
-                    start_color="22c55e", end_color="22c55e", fill_type="solid"
-                )
+#         if cell.row == 3:
+#             cell.fill = PatternFill(
+#                 start_color="ef4444", end_color="ef4444", fill_type="solid"
+#             )
+#         elif cell.row == 4:
+#             prev_cell = ws.cell(3, cell.col_idx)
+#             first_value = prev_cell.value
+#             second_value = cell.value
+#             if first_value == second_value:
+#                 prev_cell.fill = PatternFill(
+#                     start_color="78716c", end_color="78716c", fill_type="solid"
+#                 )
+#                 cell.fill = PatternFill(
+#                     start_color="78716c", end_color="78716c", fill_type="solid"
+#                 )
+#             else:
+#                 cell.fill = PatternFill(
+#                     start_color="22c55e", end_color="22c55e", fill_type="solid"
+#                 )
 
-ws.row_dimensions[1].height = 50
-ws.freeze_panes = "D5"
-wb.save("Test_sheet.xlsx")
-wb.close()
+# ws.row_dimensions[1].height = 50
+# ws.freeze_panes = "D5"
+# wb.save("Test_sheet.xlsx")
+# wb.close()
