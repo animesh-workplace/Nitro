@@ -1,9 +1,18 @@
 __version__ = "0.3.0"
 
+import pysam
 import pandas
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill, Alignment
 from openpyxl.utils.dataframe import dataframe_to_rows
+
+bamfile = pysam.AlignmentFile(
+    "/home/nsm/Desktop/All_Development/Nitro/nitro/nitro/workflow/output/Sample2/Sample2_merged.bam",
+    "rb",
+)
+reference = bamfile.references[0]
+
+print(bamfile.count_coverage(reference, 10, 11))
 
 states = ["California", "Texas", "Florida", "New York"]
 population = [39613493, 29730311, 21944577, 19299981]
